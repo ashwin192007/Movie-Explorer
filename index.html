@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Ghibli Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="logo">
+                <i class="fa-solid fa-film"></i>
+                <h1>Ghibli Explorer</h1>
+            </div>
+            <div class="header-controls">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="controls-section">
+                <div class="control-group search-group">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search by title or description..." autocomplete="off">
+                </div>
+
+                <div class="control-filters">
+                    <div class="control-group">
+                        <select id="filter-director" aria-label="Filter by Director">
+                            <option value="all">All Directors</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <select id="sort-select" aria-label="Sort Movies">
+                            <option value="default">Sort By</option>
+                            <option value="year-asc">Release Year (Oldest First)</option>
+                            <option value="year-desc">Release Year (Newest First)</option>
+                            <option value="time-asc">Running Time (Shortest)</option>
+                            <option value="time-desc">Running Time (Longest)</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <div id="loading-state" class="loading-container">
+                <div class="spinner"></div>
+                <p>Loading Ghibli magic...</p>
+            </div>
+            
+            <div id="error-state" class="error-container hidden">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p>Failed to load movies. Please try again later.</p>
+            </div>
+
+            <section id="movie-grid" class="movie-grid hidden">
+            </section>
+            
+            <div id="no-results" class="no-results hidden">
+                <i class="fa-solid fa-ghost"></i>
+                <p>No spirits found matching your criteria.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
