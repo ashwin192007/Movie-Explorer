@@ -1,5 +1,7 @@
 # 🎬 Movie Explorer App (Studio Ghibli)
 
+🚀 **Live Demo**: [https://ashwin192007.github.io/Movie-Explorer/](https://ashwin192007.github.io/Movie-Explorer/)
+
 ## 📌 Description
 
 The Movie Explorer App is a web application that allows users to explore movies from the Studio Ghibli collection. The application fetches real-time data from a public API and displays movie details in an interactive and user-friendly interface.
@@ -23,14 +25,14 @@ This API provides data about Studio Ghibli films including:
 
 ---
 
-## 🚀 Features (Planned)
+## 🚀 Features (Implemented)
 
 * 🔍 Search movies by title
 * 🎯 Filter movies by director or release year
 * 🔃 Sort movies by release date or running time
 * 🎬 Display movie details (title, description, director, etc.)
-* 🌙 Dark mode / Light mode (optional)
-* ❤️ Favorite or like movies (optional)
+* 🌙 Dark mode / Light mode functionality
+* ❤️ Favorite or like movies with local storage persistence
 
 ---
 

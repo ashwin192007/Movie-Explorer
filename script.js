@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
             showLoading(true);
             const response = await fetch(API_URL);
             if (!response.ok) throw new Error('API failed to load');
-            
+
             allMovies = await response.json();
-            
+
             populateDirectorFilter();
             renderMovies(allMovies);
         } catch (error) {
@@ -40,15 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const populateDirectorFilter = () => {
-        const directors = allMovies
-            .map(movie => movie.director)
-            .filter((director, index, self) => self.indexOf(director) === index)
-            .sort();
+        const directors = [...new Set(allMovies.map(movie => movie.director))].sort();
 
         const optionsHtml = directors
             .map(dir => `<option value="${dir}">${dir}</option>`)
             .join('');
-            
+
         elements.directorFilter.innerHTML += optionsHtml;
     };
 
@@ -58,9 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const sortValue = elements.sortSelect.value;
 
         let displayMovies = allMovies.filter(movie => {
-            const matchesSearch = movie.title.toLowerCase().includes(searchTerm) || 
-                                  movie.description.toLowerCase().includes(searchTerm);
-            
+            const matchesSearch = movie.title.toLowerCase().includes(searchTerm) ||
+                movie.description.toLowerCase().includes(searchTerm);
+
             const matchesDirector = selectedDirector === 'all' || movie.director === selectedDirector;
 
             return matchesSearch && matchesDirector;
@@ -68,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (sortValue !== 'default') {
             displayMovies = displayMovies.sort((a, b) => {
-                switch(sortValue) {
+                switch (sortValue) {
                     case 'year-asc':
                         return parseInt(a.release_date) - parseInt(b.release_date);
                     case 'year-desc':
@@ -142,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!btn) return;
 
             const movieId = btn.dataset.id;
-            
+
             if (favoriteIds.has(movieId)) {
                 favoriteIds.delete(movieId);
                 btn.classList.remove('active');
@@ -162,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isDark = document.body.dataset.theme === 'dark';
             const newTheme = isDark ? 'light' : 'dark';
             document.body.dataset.theme = newTheme;
-            
+
             const icon = elements.themeToggle.querySelector('i');
             if (newTheme === 'dark') {
                 icon.classList.replace('fa-moon', 'fa-sun');
@@ -192,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initTheme = () => {
         const savedTheme = localStorage.getItem('ghibli_theme');
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
+
         if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
             document.body.dataset.theme = 'dark';
             elements.themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
